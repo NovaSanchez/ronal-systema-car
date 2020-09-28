@@ -1,0 +1,1 @@
+workon base && python manage.py runserver

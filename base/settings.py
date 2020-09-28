@@ -24,6 +24,14 @@ SECRET_KEY = '-tx*$*xfmwjwgzi5&3oy&c+o5&jj$a@)(-&=zgc%c_(v#)5spx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+LOCAL = True
+# DEBUG_PROPAGATE_EXCEPTIONS = True
+
+DOMAIN_URL = 'http://127.0.0.1:8000'
+COMPANI = 'compani name'
+
+DB_PASS = 'acJL>Z3!X2i&&e'
+DB_USR = 'ibhfrwld_root'
 
 ALLOWED_HOSTS = []
 
@@ -100,6 +108,34 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# ********************************************************************
+#                        Data Base Config
+# ********************************************************************
+
+
+if LOCAL:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+
+    }
+else:
+    DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'ibhfrwld_database',
+                'USER': DB_USR,
+                'PASSWORD': DB_PASS,
+                'HOST': 'localhost',
+                'PORT': '',
+                'CONN_MAX_AGE': 500
+            }
+        }
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -117,4 +153,96 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+
+#********************************************************************
+#                    Statics & Media
+#********************************************************************
+
+STATIC_DIR = os.path.join(BASE_DIR, 'statics')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static-server')
+STATIC_URL = '/statics/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'statics'),
+]
+
+# Media folder for database media
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media')
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+
+# *************************************************
+#               user auth model
+# *************************************************
+
+
+# AUTH_USER_MODEL = 'user.User'
+
+
+
+# ************************************************************
+#                            login url
+# ************************************************************
+
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
+# LOGIN_URL = '/auth/login/google-oauth2/'
+
+
+
+
+# *************************************************
+#                    backend auth
+# *************************************************
+
+
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    # 'social_core.backends.google.GoogleOAuth2',
+)
+
+
+
+# ****************************************************************
+#                        Social Config
+# ****************************************************************
+
+# AIzaSyCkRtN_qk_qttC0G37Zv7j-dVqfhDJilGY
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+# id =
+
+# secred =
+
+
+# **********************************************
+#               Email                          *
+#***********************************************
+
+# ****  example ***
+
+# google settings
+# SMTP Host: smtp.gmail.com
+# SMTP Port: 587
+# SSL Protocol: OFF
+# TLS Protocol: ON
+# SMTP Username: (your Gmail username)
+# SMTP Password: (your Gmail password)
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'cuentaigc9@gmail.com'
+EMAIL_HOST_PASSWORD = 'Palabra123'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
