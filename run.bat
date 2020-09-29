@@ -1,1 +1,1 @@
-workon base && python manage.py runserver
+workon paopage && python manage.py runserver

@@ -1,0 +1,1 @@
+python manage.py makemigration --merge && python manage.py migrate
