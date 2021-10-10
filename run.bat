@@ -1,1 +1,1 @@
-workon paopage && python manage.py runserver
+workon ronald && python manage.py runserver 0.0.0.0:8000

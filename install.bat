@@ -1,1 +1,1 @@
-pip install -r requerements.txt
+workon ronald && pip install -r requerements.txt
