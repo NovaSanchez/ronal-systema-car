@@ -122,6 +122,7 @@ def admin_customer_view(request):
 @login_required(login_url='adminlogin')
 def admin_view_customer_view(request):
     customers=models.Customer.objects.all()
+    print(customers)
     return render(request,'vehicle/admin_view_customer.html',{'customers':customers})
 
 
